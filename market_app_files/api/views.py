@@ -7,7 +7,7 @@ from .permissions import IsStaffOrReadOnly, IsAdminForDeleteOrPatchAndReadOnly, 
 class ManufacturerList(generics.ListCreateAPIView):
     queryset = Manufacturer.objects.all()
     serializer_class = ManufacturerSerializer
-    permission_classes = [IsStaffReadOnly] #IsStaffOrReadOnly |      # später hinzufügen!
+    permission_classes = [IsStaffOrReadOnly |  IsAuthenticated] #IsStaffOrReadOnly |      # später hinzufügen!
 
 class ManufacturerDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Manufacturer.objects.all()
