@@ -15,23 +15,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from django.urls import path
-from .views import ManufacturerList, ManufacturerDetail, ProductList, ProductDetail, ManufacturerUserList, ManufacturerUserDetail, ManufacturerProductListCreate
-
-urlpatterns = [
-    path('manufacturers/', ManufacturerList.as_view(), name='manufacturer-list'),
-    path('manufacturers/<int:pk>/', ManufacturerDetail.as_view(), name='manufacturer-detail'),
-    path('products/', ProductList.as_view(), name='product-list'),
-    path('products/<int:pk>/', ProductDetail.as_view(), name='product-detail'),
-    path('manufacturer-users/', ManufacturerUserList.as_view(), name='manufactureruser-list'),
-    path('manufacturer-users/<int:pk>/', ManufacturerUserDetail.as_view(), name='manufactureruser-detail'),
-    path('manufacturers/<int:manufacturer_id>/products/', ManufacturerProductListCreate.as_view(), name='manufacturer-product-list-create'),
-]
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path ('api/market/', include('market_app.api.urls')),
-    path ('api/auth/', include('user_auth_app.api.urls')),
-    path('api-auth', include ('rest_framework.urls'))
+    path('api/market/', include('market_app_files.api.urls')),
+    path('api/auth/', include('user_auth_app.urls')),
+    path('api-auth/', include('rest_framework.urls')),
 ]
